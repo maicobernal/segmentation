@@ -43,6 +43,7 @@ conda activate hippo-ai
 ```
 docker compose up
 ```
+- Download the trained model from [here](https://drive.google.com/file/d/1BXn0XZGHfzD7M0F9Rl0lC5bAvpNFiuxV/view?usp=sharing) and store it on assets/model path
 
 - There are three sample studies to make inference. Initiate inference by selecting number of study (1,2,3)
 ```
