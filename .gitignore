@@ -1,0 +1,5 @@
+/old
+**.DS_Store
+**/ipynb_checkpoints
+**/__pycache__
+/assets/model/model.pth

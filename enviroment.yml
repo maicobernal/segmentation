@@ -1,0 +1,14 @@
+name: hippo-ai
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - torch
+    - nibabel
+    - matplotlib
+    - numpy
+    - pydicom
+    - Pillow
+    - tensorboard

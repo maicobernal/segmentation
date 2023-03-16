@@ -1,0 +1,39 @@
+version: "1.0"
+services:
+  pacs:
+    image: jodogne/orthanc-plugins
+    ports:
+      - 8042:8042
+      - 4242:4242
+    expose:
+      - "106"
+    volumes:
+      - ./config/orthanc.json:/etc/orthanc/orthanc.json:ro
+      - ./config/route_dicoms.lua:/etc/orthanc/route_dicoms.lua:ro
+      - orthanc_db:/var/lib/orthanc/db/
+    networks:
+      - netdicom
+  ohif_viewer:
+    image: ohif/viewer
+    ports:
+      - 3000:80
+    environment: 
+      - APP_CONFIG:/usr/share/nginx/html/app-config.js
+    volumes:
+      - ./config/nginx_ohif.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./config/ohif.js:/usr/share/nginx/html/app-config.js:ro
+      - ./config/logo.png:/usr/share/nginx/html/logo.png
+    networks:
+      - netdicom
+  dcmtk:
+    image: maic01234/dcmtk
+    expose:
+      - "106"
+    volumes:
+      - ./data/received:/home/received/
+    networks:
+      - netdicom
+volumes: 
+  orthanc_db:
+networks:
+  netdicom:
