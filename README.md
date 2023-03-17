@@ -52,7 +52,7 @@ If you need to build an image for your operating system (different CPU arquitect
 bash start_inference.sh [study_number]
 ```
 
-- Visit http://localhost:3000 to check the uploaded image and confirm whether to continue with the inference.
+- Visit http://localhost:3000 to check the uploaded DICOM raw image and confirm whether to continue with the inference in shell. 
 
 #### Report on OHIF Viewer example:
 ![](./config/patient1.png)
