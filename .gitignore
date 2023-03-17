@@ -3,3 +3,10 @@
 **/ipynb_checkpoints
 **/__pycache__
 /assets/model/model.pth
+/training/script
+/report/sent/**
+patient1.png
+patient2.png
+patient3.png
+VALIDATION.md
+data/received/**

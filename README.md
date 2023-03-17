@@ -39,11 +39,13 @@ conda activate hippo-ai
     - [Windows](https://support.dcmtk.org/redmine/projects/dcmtk)
     - [macOS](https://formulae.brew.sh/formula/dcmtk)
 
-- Start the required Docker containers
+- Start the required Docker containers. 
 ```
 docker compose up
 ```
-- Download the trained model from [here](https://drive.google.com/file/d/1BXn0XZGHfzD7M0F9Rl0lC5bAvpNFiuxV/view?usp=sharing) and store it on assets/model path
+If you need to build an image for your operating system (different CPU arquitecture) you can check instructions on how to do it on the docker-compose.yml file. 
+
+- Download the trained model from [here](https://drive.google.com/file/d/1_-4vo8W4IQn6OTodDfBlKkpAKZf74HcC/view?usp=sharing) and store it on assets/model path
 
 - There are three sample studies to make inference. Initiate inference by selecting number of study (1,2,3)
 ```
@@ -52,5 +54,8 @@ bash start_inference.sh [study_number]
 
 - Visit http://localhost:3000 to check the uploaded image and confirm whether to continue with the inference.
 
-### License
-This project is licensed under the terms of the MIT license. See the LICENSE file for details.
+#### Report on OHIF Viewer example:
+![](./config/patient1.png)
+
+
+Remember to erase containers and volume from Docker if you want to make inference on the same files again. 

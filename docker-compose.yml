@@ -26,6 +26,10 @@ services:
     networks:
       - netdicom
   dcmtk:
+    #Uncomment build if you want to build the image yourself for your operating system arquitecture.
+    #This is not necessary if you are using a arm64 machine (Apple Silicon chips)
+    #To build: docker-compose build and then docker-compose up
+    #build: .
     image: maic01234/dcmtk
     expose:
       - "106"

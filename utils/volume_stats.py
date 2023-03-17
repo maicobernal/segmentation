@@ -22,13 +22,18 @@ def Dice3d(a, b):
     if a.shape != b.shape:
         raise Exception(f"Expecting inputs of the same shape, got {a.shape} and {b.shape}")
     
-    intersection = np.sum(a*b)
-    volumes = np.sum(a) + np.sum(b)
+    # Convert input arrays to binary masks
+    a_mask = np.where(a > 0, 1, 0)
+    b_mask = np.where(b > 0, 1, 0)
 
-    if volumes == 0:
+    # Calculate intersection and sum of the two binary masks
+    intersection = np.sum(a_mask * b_mask)
+    total_elements = np.sum(a_mask) + np.sum(b_mask)
+
+    if total_elements == 0:
         return -1
-
-    return 2.*float(intersection) / float(volumes)
+    else:
+        return 2 * float(intersection) / float(total_elements)
 
 def Jaccard3d(a, b):
     """
@@ -48,19 +53,23 @@ def Jaccard3d(a, b):
 
     if a.shape != b.shape:
         raise Exception(f"Expecting inputs of the same shape, got {a.shape} and {b.shape}")
-    
-    a = a > 0
-    b = b > 0
-    a[a>0] = 1
-    b[b>0] = 1
 
-    intersection = np.sum(a*b)
-    volumes = np.sum(a) + np.sum(b)
+    # TASK: Write implementation of Jaccard similarity coefficient. Please do not use 
+    # the Dice3D function from above to do the computation ;)
+    # <YOUR CODE GOES HERE>
 
-    if volumes == 0:
+    # Convert input arrays to binary masks
+    a_mask = np.where(a > 0, 1, 0)
+    b_mask = np.where(b > 0, 1, 0)
+
+    # Calculate intersection and union of the two binary masks
+    intersection = np.sum(a_mask * b_mask)
+    union = np.sum(a_mask) + np.sum(b_mask) - intersection
+
+    if union == 0:
         return -1
     else:
-        return float(intersection)/float((volumes - intersection))
+        return float(intersection) / float(union)
     
 
 def Sensitivity(a, b):

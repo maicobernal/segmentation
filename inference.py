@@ -48,7 +48,6 @@ def get_predicted_volumes(pred):
         A dictionary with respective volumes
     """
 
-    # TASK: Compute the volume of your hippocampal prediction
     volume_ant = int(np.sum(pred[pred == 1]))
     volume_post = int(np.sum(pred[pred == 2])/2)
     total_volume = volume_ant + volume_post
@@ -244,23 +243,17 @@ if __name__ == "__main__":
     report_img = create_report(pred_volumes, header, volume, pred_label)
     save_report_as_dcm(header, report_img, report_save_path)
 
-    # Save overlayed images as a new DICOM series
-    print("Saving overlayed images as a new DICOM series...")
-    overlay_output_dir = "./overlay/"
-    os.makedirs(overlay_output_dir, exist_ok=True)
-
-    # Send report and overlayed images to our storage archive
+    # Send report.dcm to our storage archive
     os_command("storescu localhost 4242 -v -aec Orthanc +r +sd ./report/temp/")
     print('Report sent to storage archive successfully!')
 
     time.sleep(2)
-    shutil.rmtree(study_dir, onerror=lambda f, p, e: print(f"Error deleting: {e[1]}"))
 
     print(f"Inference successful on {header['SOPInstanceUID'].value}, out: {pred_label.shape}",
         f"volume ant: {pred_volumes['anterior']}, ",
         f"volume post: {pred_volumes['posterior']}, total volume: {pred_volumes['total']}")
     
-    print('Waiting for 5 seconds before deleting files...')
+    print('Waiting for 5 seconds before deleting files from Received folder...')
     time.sleep(5)
     
     ## Delete files in the data/received folder
@@ -270,7 +263,9 @@ if __name__ == "__main__":
             file_path = os.path.join("./data/received", file)
             os.remove(file_path)
     except:
+        print('*'*50)
         print('Some files could not be deleted, delete them manually before running the script again.')
+        print('*'*50)
         pass
 
     ## Move files from report/temp folder to report/sent folder
@@ -278,7 +273,7 @@ if __name__ == "__main__":
     try:
         for file in os.listdir("./report/temp"):
             file_path = os.path.join("./report/temp", file)
-            shutil.move(file_path, "../sent")
+            shutil.move(file_path, "./report/sent")
     except:
         print('Some files could not be moved, move them manually before running the script again.')
         pass
