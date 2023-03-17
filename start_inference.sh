@@ -48,8 +48,7 @@ if ! command -v storescu > /dev/null 2>&1; then
   echo "storescu is not installed or not available in the system PATH. Please install the DCMTK package and try again."
   echo "You can find installation instructions for various platforms in the following links:"
   echo "  - Ubuntu/Debian: https://packages.debian.org/sid/dcmtk"
-  echo "  - Fedora/RHEL: https://apps.fedoraproject.org/packages/dcmtk"
-  echo "  - Windows: https://support.dcmtk.org/redmine/projects/dcmtk/wiki/Installing_DCMTK_on_Windows"
+  echo "  - Windows: https://www.dcmtk.org/en/dcmtk/dcmtk-tools/"
   echo "  - macOS: https://formulae.brew.sh/formula/dcmtk"
   exit 1
 fi

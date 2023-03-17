@@ -27,10 +27,10 @@ For keeping it simplier and faster the conda enviroment for inference will run o
 ```
 git clone https://github.com/maicobernal/segmentation
 ```
-- Install Python 3.8 and Docker on your system, following the instructions for your operating system.
-- Create a conda enviroment:
+- Install [Conda](https://docs.conda.io/en/latest/miniconda.html) and [Docker](https://docs.docker.com/engine/install/) on your system, following the instructions for your operating system.
+- Create a conda enviroment (it can take a few minutes):
 ```
-conda env create -f environment.yml
+conda env create -f enviroment.yml
 conda activate hippo-ai
 ```
 
