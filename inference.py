@@ -259,9 +259,8 @@ if __name__ == "__main__":
     ## Delete files in the data/received folder
     print('Deleting files in the data/received folder...')
     try:
-        for file in os.listdir("./data/received"):
-            file_path = os.path.join("./data/received", file)
-            os.remove(file_path)
+        os_command("rm -fr ./data/received")
+        os_command("mkdir ./data/received")
     except:
         print('*'*50)
         print('Some files could not be deleted, delete them manually before running the script again.')

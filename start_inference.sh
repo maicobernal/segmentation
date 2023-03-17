@@ -103,8 +103,9 @@ fi
 storescu localhost 4242 -v -aec Orthanc +r +sd "data/to_send/Study$study_number"
 
 echo "Go to the website http://localhost:3000 and check the image uploaded."
-echo "Press 'y' to continue the inference, press 'n' to abort the operation."
-
+echo "**********************************************************************"
+echo "\033[32mPress 'y' to continue the inference, press 'n' to abort the operation.\033[0m"
+echo "**********************************************************************"
 read -r -n 1 continue_inference
 echo
 
@@ -115,7 +116,7 @@ else
   exit 0
 fi
 
-echo "Inference completed sucessfully"
+echo "\033[32mInference completed sucessfully"
 echo "Report sended to the Orthanc server sucessfully"
 echo "Please check the report by updating localhost:3000 to see it on the OHIF Viewer"
-echo "All done here"
+echo "All done here!\033[0m"
