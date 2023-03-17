@@ -78,6 +78,27 @@ if [ ${#MISSING_CONTAINERS[@]} -ne 0 ]; then
   exit 1
 fi
 
+# Check that folders exists if not create them
+if [ ! -d "images" ]; then
+    mkdir images
+fi
+
+if [ ! -d "report" ]; then
+    mkdir report
+fi
+
+if [ ! -d "report/sent" ]; then
+    mkdir report/sent
+fi
+
+if [ ! -d "report/temp" ]; then
+    mkdir report/temp
+fi
+
+if [ ! -d "data/received" ]; then
+    mkdir data/received
+fi
+
 # Send volume to server
 storescu localhost 4242 -v -aec Orthanc +r +sd "data/to_send/Study$study_number"
 
